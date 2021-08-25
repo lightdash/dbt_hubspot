@@ -68,7 +68,7 @@ models:
               type: number
               sql: "(${total_unique_emails_delivered} / ${total_unique_emails_sent})"
             email_bounce_rate:
-              description: "Bounce rate is the ratio of emails bounced out of the emails you sent.""
+              description: "Bounce rate is the ratio of emails bounced out of the emails you sent."
               type: number
               sql: "(${total_unique_emails_bounced} / ${total_unique_emails_sent})"
             email_spam_report_rate:
