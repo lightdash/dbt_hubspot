@@ -22,13 +22,82 @@ models:
         tests:
           - unique
           - not_null
+        meta:
+          metrics:
+            total_unique_emails_sent:
+              type: count_distinct
+              description: Count the number of sent email events
+            total_unique_emails_bounced:
+              type: count_distinct
+              sql: "IF(${was_bounced}, ${event_id}, NULL)"
+              description: Counts the number of emails bounced (of the emails sent)
+            total_unique_emails_clicked:
+              type: count_distinct
+              sql: "IF(${was_clicked}, ${event_id}, NULL)"
+              description: Counts the number of emails clicked (of the emails sent)
+            total_unique_emails_deferred:
+              type: count_distinct
+              sql: "IF(${was_deferred}, ${event_id}, NULL)"
+              description: Counts the number of emails deferred (of the emails sent)
+            total_unique_emails_delivered:
+              type: count_distinct
+              sql: "IF(${was_delivered}, ${event_id}, NULL)"
+              description: Counts the number of emails delivered (of the emails sent)
+            total_unique_emails_forwarded:
+              type: count_distinct
+              sql: "IF(${was_forwaded}, ${event_id}, NULL)"
+              description: Counts the number of emails forwarded (of the emails sent)
+            total_unique_emails_opened:
+              type: count_distinct
+              sql: "IF(${was_opened}, ${event_id}, NULL)"
+              description: Counts the number of emails opened (of the emails sent)
+            total_unique_emails_printed:
+              type: count_distinct
+              sql: "IF(${was_printed}, ${event_id}, NULL)"
+              description: Counts the number of emails printed (of the emails sent)
+            total_unique_email_spam_reports:
+              type: count_distinct
+              sql: "IF(${was_spam_reported}, ${event_id}, NULL)"
+              description: Counts the number of emails reported as spam (of the emails sent)
+            total_unique_email_unsubscribes:
+              type: count_distinct
+              sql: "IF(${was_unsubcribed}, ${event_id}, NULL)"
+              description: Counts the number of emails where someone clicked unsubscribe
+            email_delivery_rate:
+              description: "Delivery rate is the ratio of emails delivered out of the emails you sent."
+              type: number
+              sql: "(${total_unique_emails_delivered} / ${total_unique_emails_sent})"
+            email_bounce_rate:
+              description: "Bounce rate is the ratio of emails bounced out of the emails you sent.""
+              type: number
+              sql: "(${total_unique_emails_bounced} / ${total_unique_emails_sent})"
+            email_spam_report_rate:
+              description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_email_spam_reports} / ${total_unique_emails_delivered})"
+            email_unsubscribe_rate:
+              description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_email_spam_reports} / ${total_unique_emails_delivered})"
+            email_open_rate:
+              description: "Open rate is the ratio of emails opened out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_emails_opened} / ${total_unique_emails_delivered})"
+            email_click_rate:
+              description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_emails_clicked} / ${total_unique_emails_delivered})"
+            email_click_through_rate:
+              description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
+              type: number
+              sql: "(${total_unique_emails_clicked} / ${total_unique_emails_opened})"
 
       - name: from_email
         description: The 'from' field of the email message.
 
       - name: reply_to_email
         description: The 'reply-to' field of the email message.
-        
+
       - name: created_timestamp
         description: The created timestamp of the event.
 
@@ -124,6 +193,28 @@ models:
         tests:
           - unique
           - not_null
+        meta:
+          metrics:
+            campaign_spam_report_rate:
+              description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_spam_reports} / ${total_unique_deliveries})"
+            campaign_unsubscribe_rate:
+              description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_unsubscribes} / ${total_unique_deliveries})"
+            campaign_open_rate:
+              description: "Open rate is the ratio of emails opened out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_opens} / ${total_unique_deliveries})"
+            campaign_click_rate:
+              description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_deliveries})"
+            campaign_click_through_rate:
+              description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_opens})"
 
       - name: email_campaign_name
         description: The name of the email campaign.
@@ -211,6 +302,28 @@ models:
         tests:
           - unique
           - not_null
+      meta:
+        metrics:
+          contact_spam_report_rate:
+            description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
+            type: number
+            sql: "(${total_unique_spam_reports} / ${total_unique_deliveries})"
+          contact_unsubscribe_rate:
+            description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
+            type: number
+            sql: "(${total_unique_unsubscribes} / ${total_unique_deliveries})"
+          contact_open_rate:
+            description: "Open rate is the ratio of emails opened out of the emails that were delivered."
+            type: number
+            sql: "(${total_unique_opens} / ${total_unique_deliveries})"
+          contact_click_rate:
+            description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
+            type: number
+            sql: "(${total_unique_clicks} / ${total_unique_deliveries})"
+          contact_click_through_rate:
+            description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
+            type: number
+            sql: "(${total_unique_clicks} / ${total_unique_opens})"
 
       - name: email
         description: The email address of the contact.
@@ -310,6 +423,28 @@ models:
         tests:
           - unique
           - not_null
+        meta:
+          metrics:
+            contact_list_spam_report_rate:
+              description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_spam_reports} / ${total_unique_deliveries})"
+            contact_list_unsubscribe_rate:
+              description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_unsubscribes} / ${total_unique_deliveries})"
+            contact_list_open_rate:
+              description: "Open rate is the ratio of emails opened out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_opens} / ${total_unique_deliveries})"
+            contact_list_click_rate:
+              description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_deliveries})"
+            contact_list_click_through_rate:
+              description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_opens})"
 
       - name: contact_list_name
         description: The name of the contact list.
@@ -334,7 +469,7 @@ models:
 
       - name: metadata_processing
         description: |
-              One of DONE, REFRESHING, INITIALIZING, or PROCESSING. 
+              One of DONE, REFRESHING, INITIALIZING, or PROCESSING.
               DONE indicates the list has finished processing, any other value indicates that list membership is being evaluated.
 
       - name: metadata_size
