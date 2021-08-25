@@ -302,28 +302,28 @@ models:
         tests:
           - unique
           - not_null
-    meta:
-      metrics:
-        contact_spam_report_rate:
-          description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
-          type: number
-          sql: "(${total_unique_spam_reports} / ${total_unique_deliveries})"
-        contact_unsubscribe_rate:
-          description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
-          type: number
-          sql: "(${total_unique_unsubscribes} / ${total_unique_deliveries})"
-        contact_open_rate:
-          description: "Open rate is the ratio of emails opened out of the emails that were delivered."
-          type: number
-          sql: "(${total_unique_opens} / ${total_unique_deliveries})"
-        contact_click_rate:
-          description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
-          type: number
-          sql: "(${total_unique_clicks} / ${total_unique_deliveries})"
-        contact_click_through_rate:
-          description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
-          type: number
-          sql: "(${total_unique_clicks} / ${total_unique_opens})"
+        meta:
+          metrics:
+            contact_spam_report_rate:
+              description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_spam_reports} / ${total_unique_deliveries})"
+            contact_unsubscribe_rate:
+              description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_unsubscribes} / ${total_unique_deliveries})"
+            contact_open_rate:
+              description: "Open rate is the ratio of emails opened out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_opens} / ${total_unique_deliveries})"
+            contact_click_rate:
+              description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_deliveries})"
+            contact_click_through_rate:
+              description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
+              type: number
+              sql: "(${total_unique_clicks} / ${total_unique_opens})"
 
       - name: email
         description: The email address of the contact.
