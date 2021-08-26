@@ -288,7 +288,7 @@ models:
       - name: total_unique_prints
         description: "{{ doc('unique_prints') }}"
 
-      - name: total_spam_reports
+      - name: total_unique_spam_reports
         description: "{{ doc('unique_spam_reports') }}"
 
       - name: total_unsubscribes
