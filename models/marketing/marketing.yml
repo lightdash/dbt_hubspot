@@ -45,7 +45,7 @@ models:
               description: Counts the number of emails delivered (of the emails sent)
             total_unique_emails_forwarded:
               type: count_distinct
-              sql: "IF(${was_forwaded}, ${event_id}, NULL)"
+              sql: "IF(${was_forwarded}, ${event_id}, NULL)"
               description: Counts the number of emails forwarded (of the emails sent)
             total_unique_emails_opened:
               type: count_distinct
