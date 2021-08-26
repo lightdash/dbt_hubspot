@@ -43,13 +43,10 @@ models:
               type: count_distinct
               sql: "IF(${was_delivered}, ${event_id}, NULL)"
               description: Counts the number of emails delivered (of the emails sent)
-            {% if fivetran_utils.enabled_vars(['hubspot_email_event_forward_enabled']) %}
             total_unique_emails_forwarded:
               type: count_distinct
               sql: "IF(${was_forwaded}, ${event_id}, NULL)"
               description: Counts the number of emails forwarded (of the emails sent)
-            {% else %}
-            {% endif %}
             total_unique_emails_opened:
               type: count_distinct
               sql: "IF(${was_opened}, ${event_id}, NULL)"
