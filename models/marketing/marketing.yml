@@ -66,31 +66,31 @@ models:
             email_delivery_rate:
               description: "Delivery rate is the ratio of emails delivered out of the emails you sent."
               type: number
-              sql: "(${total_unique_emails_delivered} / ${total_unique_emails_sent})"
+              sql: "(${total_unique_emails_delivered} / NULLIF(${total_unique_emails_sent}, 0))"
             email_bounce_rate:
               description: "Bounce rate is the ratio of emails bounced out of the emails you sent."
               type: number
-              sql: "(${total_unique_emails_bounced} / ${total_unique_emails_sent})"
+              sql: "(${total_unique_emails_bounced} / NULLIF(${total_unique_emails_sent}, 0))"
             email_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(${total_unique_email_spam_reports} / ${total_unique_emails_delivered})"
+              sql: "(${total_unique_email_spam_reports} / NULLIF(${total_unique_emails_delivered}, 0))"
             email_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(${total_unique_email_spam_reports} / ${total_unique_emails_delivered})"
+              sql: "(${total_unique_email_spam_reports} / $NULLIF({total_unique_emails_delivered}, 0))"
             email_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(${total_unique_emails_opened} / ${total_unique_emails_delivered})"
+              sql: "(${total_unique_emails_opened} / NULLIF(${total_unique_emails_delivered}, 0))"
             email_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(${total_unique_emails_clicked} / ${total_unique_emails_delivered})"
+              sql: "(${total_unique_emails_clicked} / NULLIF(${total_unique_emails_delivered}, 0))"
             email_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(${total_unique_emails_clicked} / ${total_unique_emails_opened})"
+              sql: "(${total_unique_emails_clicked} / NULLIF(${total_unique_emails_opened}, 0))"
 
       - name: from_email
         description: The 'from' field of the email message.
@@ -198,23 +198,23 @@ models:
             campaign_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_spam_reports} / ${sum_of_total_unique_deliveries})"
+              sql: "(${sum_of_total_unique_spam_reports} / NULLIF(${sum_of_total_unique_deliveries}, 0))"
             campaign_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_unsubscribes}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             campaign_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_opens}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             campaign_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             campaign_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_opens}, 0)"
 
       - name: email_campaign_name
         description: The name of the email campaign.
@@ -347,23 +347,23 @@ models:
             contact_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_spam_reports}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_spam_reports}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_unsubscribes}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_opens}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_opens}, 0)"
 
       - name: email
         description: The email address of the contact.
@@ -509,23 +509,23 @@ models:
             contact_list_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_spam_reports}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_spam_reports}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_list_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_unsubscribes}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_list_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_opens}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_list_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_deliveries}, 0)"
             contact_list_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
+              sql: "(${sum_of_total_unique_clicks}) / NULLIF(${sum_of_total_unique_opens}, 0)"
 
       - name: contact_list_name
         description: The name of the contact list.
