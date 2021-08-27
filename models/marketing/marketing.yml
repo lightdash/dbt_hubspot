@@ -198,23 +198,23 @@ models:
             campaign_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_spam_reports}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_spam_reports} / ${sum_of_total_unique_deliveries})"
             campaign_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_unsubscribes}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
             campaign_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_opens}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
             campaign_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
             campaign_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_opens}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
 
       - name: email_campaign_name
         description: The name of the email campaign.
@@ -266,33 +266,73 @@ models:
 
       - name: total_unique_bounces
         description: "{{ doc('unique_bounces') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_bounces:
+              type: sum
 
       - name: total_unique_clicks
         description: "{{ doc('unique_clicks') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_clicks:
+              type: sum
 
       - name: total_unique_deferrals
         description: "{{ doc('unique_deferrals') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deferrals:
+              type: sum
 
       - name: total_unique_deliveries
         description: "{{ doc('unique_deliveries') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deliveries:
+              type: sum
 
       - name: total_unique_drops
         description: "{{ doc('unique_drops') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_drops:
+              type: sum
 
       - name: total_unique_forwards
         description: "{{ doc('unique_forwards') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_forwards:
+              type: sum
 
       - name: total_unique_opens
         description: "{{ doc('unique_opens') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_opens:
+              type: sum
 
       - name: total_unique_prints
         description: "{{ doc('unique_prints') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_prints:
+              type: sum
 
       - name: total_unique_spam_reports
         description: "{{ doc('unique_spam_reports') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_spam_reports:
+              type: sum
 
-      - name: total_unsubscribes
+      - name: total_unique_unsubscribes
         description: "{{ doc('unique_unsubscribes') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_unsubscribes:
+              type: sum
 
   - name: hubspot__contacts
     description: Each record represents a contact in Hubspot.
@@ -307,23 +347,23 @@ models:
             contact_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_spam_reports}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_spam_reports}) / ${sum_of_total_unique_deliveries}"
             contact_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_unsubscribes}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
             contact_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_opens}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
             contact_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
             contact_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_opens}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
 
       - name: email
         description: The email address of the contact.
@@ -360,33 +400,74 @@ models:
 
       - name: total_unique_bounces
         description: "{{ doc('unique_bounces') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_bounces:
+              type: sum
 
       - name: total_unique_clicks
         description: "{{ doc('unique_clicks') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_clicks:
+              type: sum
 
       - name: total_unique_deferrals
         description: "{{ doc('unique_deferrals') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deferrals:
+              type: sum
 
       - name: total_unique_deliveries
         description: "{{ doc('unique_deliveries') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deliveries:
+              type: sum
 
       - name: total_unique_drops
         description: "{{ doc('unique_drops') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_drops:
+              type: sum
 
       - name: total_unique_forwards
         description: "{{ doc('unique_forwards') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_forwards:
+              type: sum
 
       - name: total_unique_opens
         description: "{{ doc('unique_opens') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_opens:
+              type: sum
 
       - name: total_unique_prints
         description: "{{ doc('unique_prints') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_prints:
+              type: sum
 
       - name: total_unique_spam_reports
         description: "{{ doc('unique_spam_reports') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_spam_reports:
+              type: sum
 
       - name: total_unique_unsubscribes
         description: "{{ doc('unique_unsubscribes') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_unsubscribes:
+              type: sum
+
 
       - name: count_engagement_notes
         description: "{{ doc('count_engagement_notes') }}"
@@ -428,23 +509,23 @@ models:
             contact_list_spam_report_rate:
               description: "Spam report rate is the ratio of emails reported as spam out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_spam_reports}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_spam_reports}) / ${sum_of_total_unique_deliveries}"
             contact_list_unsubscribe_rate:
               description: "Unsubscribe rate is the ratio of email unsubscribes out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_unsubscribes}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_unsubscribes}) / ${sum_of_total_unique_deliveries}"
             contact_list_open_rate:
               description: "Open rate is the ratio of emails opened out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_opens}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_opens}) / ${sum_of_total_unique_deliveries}"
             contact_list_click_rate:
               description: "Click rate is the ratio of emails where someone clicked a link out of the emails that were delivered."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_deliveries}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_deliveries}"
             contact_list_click_through_rate:
               description: "Click through rate is the ratio of recipients who clicked a link in your email out of those who opened it."
               type: number
-              sql: "(SUM(${total_unique_clicks}) / SUM(${total_unique_opens}))"
+              sql: "(${sum_of_total_unique_clicks}) / ${sum_of_total_unique_opens}"
 
       - name: contact_list_name
         description: The name of the contact list.
@@ -513,30 +594,70 @@ models:
 
       - name: total_unique_bounces
         description: "{{ doc('unique_bounces') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_bounces:
+              type: sum
 
       - name: total_unique_clicks
         description: "{{ doc('unique_clicks') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_clicks:
+              type: sum
 
       - name: total_unique_deferrals
         description: "{{ doc('unique_deferrals') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deferrals:
+              type: sum
 
       - name: total_unique_deliveries
         description: "{{ doc('unique_deliveries') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_deliveries:
+              type: sum
 
       - name: total_unique_drops
         description: "{{ doc('unique_drops') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_drops:
+              type: sum
 
       - name: total_unique_forwards
         description: "{{ doc('unique_forwards') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_forwards:
+              type: sum
 
       - name: total_unique_opens
         description: "{{ doc('unique_opens') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_opens:
+              type: sum
 
       - name: total_unique_prints
         description: "{{ doc('unique_prints') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_prints:
+              type: sum
 
       - name: total_unique_spam_reports
         description: "{{ doc('unique_spam_reports') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_spam_reports:
+              type: sum
 
       - name: total_unique_unsubscribes
         description: "{{ doc('unique_unsubscribes') }}"
+        meta:
+          metrics:
+            sum_of_total_unique_unsubscribes:
+              type: sum
