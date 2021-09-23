@@ -31,8 +31,8 @@ Include in your `packages.yml`
 
 ```yaml
 packages:
-  - package: lightdash/dbt_hubspot
-    version: 0.1.0
+  - git: "https://github.com/lightdash/dbt_hubspot.git"
+    revision: v0.5.1
 ```
 
 ## Configuration
